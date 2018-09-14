@@ -22,7 +22,7 @@ class ProjectDB(MySQLMixin, BaseProjectDB, BaseDB):
         self.conn = mysql.connector.connect(user=user, password=passwd,
                                             host=host, port=port, autocommit=True)
         if database not in [x[0] for x in self._execute('show databases')]:
-            self._execute('CREATE DATABASE %s' % self.escape(database))
+            self._execute('CREATE DATABASE IF NOT EXISTS %s' % self.escape(database))
         self.conn.database = database
 
         self._execute('''CREATE TABLE IF NOT EXISTS %s (
