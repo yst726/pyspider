@@ -1,4 +1,4 @@
-FROM python:2.7
+FROM python:3.7
 MAINTAINER binux <roy@binux.me>
 
 # install phantomjs
@@ -15,6 +15,7 @@ RUN pip install --egg 'https://dev.mysql.com/get/Downloads/Connector-Python/mysq
 COPY requirements.txt /opt/pyspider/requirements.txt
 RUN pip install -r /opt/pyspider/requirements.txt
 
+RUN pip install MySQL-python
 # add all repo
 ADD ./ /opt/pyspider
 
